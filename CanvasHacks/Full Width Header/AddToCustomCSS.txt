@@ -1,0 +1,10 @@
+// Add to your theme's custom.css
+
+body {padding: 0;}
+#wrapper {padding:0;max-width: 100% !important;}
+#top {padding:0 20px;}
+#header-container {background:#316594;padding:0 20px;}
+#nav-container {background:#CDDAE3;padding:0 20px;}
+#content {padding:0 20px;}
+#footer-widgets-container {background:#CDDAE3;padding:0 20px;}
+#footer-container {background:#316594;padding:0 20px;}
