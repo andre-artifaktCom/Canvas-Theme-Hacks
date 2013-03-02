@@ -1,0 +1,73 @@
+ADD TO CUSTOM.CCS
+
+.nav li.menu-item-type-social a { 
+background-image: url(http://dev2.artifakthosting.com/wp-content/themes/canvas/images/ico-subscribe-social.png) !important; 
+background-repeat: no-repeat; 
+display: inline-block; 
+height: 28px; 
+width: 30px; 
+}
+
+.nav li.menu-item-type-social a { 
+-moz-transition: all 0.2s ease-in-out 0s; 
+opacity: 0.8; 
+
+}
+
+.nav li.menu-item-type-social a { opacity: 0.8; filter: alpha(opacity=80); -webkit-transition: all ease-in-out 0.2s; -moz-transition: all ease-in-out 0.2s; -ms-transition: all ease-in-out 0.2s; -o-transition: all ease-in-out 0.2s; transition: all ease-in-out 0.2s; padding: 0px !important;
+
+}
+
+.nav li.menu-item-type-social a:hover { opacity: 1; filter: alpha(opacity=100); background-color: transparent; } 
+.nav li.menu-item-type-social a { display: inline-block; height: 28px; width: 30px; background-image: url(http://dev2.artifakthosting.com/wp-content/themes/canvas/images/ico-subscribe-social.png) !important; background-repeat: no-repeat; } 
+.nav li.menu-item-type-social a.subscribe { background-position: 0px 0 !important; } 
+.nav li.menu-item-type-social a.twitter { background-position: -30px 0 !important; } 
+.nav li.menu-item-type-social a.facebook { background-position: -60px 0 !important; } 
+.nav li.menu-item-type-social a.youtube { background-position: -90px 0 !important; } 
+.nav li.menu-item-type-social a.flickr { background-position: -120px 0 !important; } 
+.nav li.menu-item-type-social a.linkedin { background-position: -150px 0 !important; } 
+.nav li.menu-item-type-social a.delicious { background-position: -180px 0 !important; } 
+.nav li.menu-item-type-social a.googleplus { background-position: -210px 0 !important; }
+
+#navigation ul.nav > li.menu-item-type-social { 
+margin: 7px 0px 0px 3px; 
+border-right: 0px solid #E6E6E6; 
+}
+
+ADD TO FUNCTIONS.PHP
+
+add_filter( 'wp_nav_menu_items', 'woo_custom_add_sociallink_navitems', 10, 2 );
+ 
+function woo_custom_add_sociallink_navitems ( $items, $args ) {
+    global $woo_options;
+ 
+    if ( $args->theme_location == 'primary-menu' ) {
+ 
+        $template_directory = get_template_directory_uri();
+ 
+        $profiles = array(
+                        'twitter' => __( 'Follow us on Twitter' , 'woothemes' ),
+                        'facebook' => __( 'Connect on Facebook' , 'woothemes' ),
+                        'youtube' => __( 'Watch on YouTube' , 'woothemes' ),
+                        'flickr' => __( 'See photos on Flickr' , 'woothemes' ),
+                        'linkedin' => __( 'Connect on LinkedIn' , 'woothemes' ),
+                        'delicious' => __( 'Discover on Delicious' , 'woothemes' ),
+                        'googleplus' => __( 'View Google+ profile' , 'woothemes' )
+                    );
+ 
+        foreach ( $profiles as $key => $text ) {
+            if ( isset( $woo_options['woo_connect_' . $key] ) && $woo_options['woo_connect_' . $key] != '' ) {
+                $class = 'menu-item menu-item-type-social menu-item-object-social menu-item-' . $key;
+                $items .= '
+<li id="menu-item-' . $key . '" class="' . $class . '">';
+                $items .= '<a class="' . $key .'" href="' . $woo_options['woo_connect_' . $key] . '" title="' . esc_attr( $text ) . '">';
+                $items .= '</a></li>
+ 
+' . "
+";
+            }
+        }
+    }
+ 
+    return $items;
+} // End woo_custom_add_sociallink_navitems()
