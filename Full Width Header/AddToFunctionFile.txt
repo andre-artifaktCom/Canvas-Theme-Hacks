@@ -1,0 +1,53 @@
+// Add to your theme's function.php file
+
+// Add header container
+add_action( 'woo_header_before', 'header_container_start' );
+function header_container_start() { ?>
+<!--#header-container-->
+    <div id="header-container">
+<?php
+}
+add_action( 'woo_header_after', 'header_container_end', 8 );
+function header_container_end() { ?>
+    </div><!--/#header-container-->
+<?php
+}
+
+// Add navigation container
+add_action( 'woo_nav_before', 'nav_container_start' );
+function nav_container_start() { ?>
+<!--#nav-container-->
+    <div id="nav-container">
+<?php
+}
+add_action( 'woo_nav_after', 'nav_container_end' );
+function nav_container_end() { ?>
+    </div><!--/#nav-container-->
+<?php
+}
+
+// Add footer widget container
+add_action( 'woo_footer_top', 'footer_widgets_container_start', 8 );
+function footer_widgets_container_start() { ?>
+<!--#footer-widgets-container-->
+    <div id="footer-widgets-container">
+<?php
+}
+add_action( 'woo_footer_before', 'footer_widgets_container_end' );
+function footer_widgets_container_end() { ?>
+    </div><!--/#footer_widgets_container_end-->
+<?php
+}
+
+// Add footer container
+add_action( 'woo_footer_before', 'footer_container_start' );
+function footer_container_start() { ?>
+<!--#footer_container_start-->
+    <div id="footer-container">
+<?php
+}
+add_action( 'woo_footer_after', 'footer_container_end' );
+function footer_container_end() { ?>
+    </div><!--/#footer_container_end-->
+<?php
+}
