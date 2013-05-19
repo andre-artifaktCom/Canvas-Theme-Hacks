@@ -1,0 +1,23 @@
+// Display the "Business" slider in Canvas 5 above the default WordPress homepage
+
+add_action( 'get_header', 'woo_custom_load_biz_slider', 10 );
+ 
+function woo_custom_load_biz_slider () {
+    if ( is_front_page() && ! is_paged() ) {
+        add_action( 'woo_main_before_home', 'woo_slider_biz', 10 );
+        add_action( 'woo_main_before_home', 'woo_custom_reset_biz_query', 11 );
+        add_action( 'woo_load_slider_js', '__return_true', 10 );
+        add_filter( 'body_class', 'woo_custom_add_business_bodyclass', 10 );
+    }
+} // End woo_custom_load_biz_slider()
+ 
+function woo_custom_add_business_bodyclass ( $classes ) {
+    if ( is_home() ) {
+        $classes[] = 'business';
+    }
+    return $classes;
+} // End woo_custom_add_biz_bodyclass()
+ 
+function woo_custom_reset_biz_query () {
+    wp_reset_query();
+} // End woo_custom_reset_biz_query()
